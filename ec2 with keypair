@@ -1,0 +1,38 @@
+provider "aws" {
+  access_key = "AKIAQNJKUD7DGHZ7QXW2"
+  secret_key = "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"
+  region = "us-west-1"
+}
+resource "aws_instance" "klkl" {
+  ami  = "ami-061352bb71c4724b2"
+  count = 1
+  key_name = "TF_key"
+  instance_type = "t2.micro"
+  security_groups = ["ssd"]
+  tags = {
+    name = "value"
+  }
+}
+resource "aws_security_group" "ssk" {
+  name = "ssd"
+  description = "lklk"
+  ingress{
+    from_port = 0
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+}
+resource "aws_key_pair" "TF_key" {
+  key_name   = "TF_key"
+  public_key = tls_private_key.rssa.public_key_openssh
+}
+resource "tls_private_key" "rssa" {
+  algorithm = "RSA"
+  rsa_bits = 4096
+}
+resource "local_file" "TF_key" {
+  content = tls_private_key.rssa.private_key_pem
+  filename = "tfkkey" 
+}
