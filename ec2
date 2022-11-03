@@ -1,6 +1,5 @@
 provider "aws" {
-  access_key = "AKIAQNJKUD7DGHZ7QXW2"
-  secret_key = "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"
+ 
   region = "us-west-1"
 }
 resource "aws_instance" "kkll" {
